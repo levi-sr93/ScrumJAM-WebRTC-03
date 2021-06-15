@@ -85,7 +85,9 @@ const createPeerConnection = (peerConn, sendOffer) => {
 
 //exchange SDP - Local and Remote description
 export const handleOffer = async (data) => {
-  await peerConnection[data.user].setRemoteDescription(data.offer);
+  await peerConnection[data.user].setRemoteDescription(
+    new RTCSessionDescription(data.offer)
+  );
   const answer = await peerConnection[data.user].createAnswer(); //this method creates an SDP answer to offer received user remote peer
   await peerConnection[data.user].setLocalDescription(
     new RTCSessionDescription(answer)
@@ -106,7 +108,9 @@ export const handleAnswer = async (data) => {
 export const handleCandidate = async (data) => {
   try {
     console.log("adding ICE candidate");
-    await peerConnection[data.user].addIceCandidate(data.candidate);
+    await peerConnection[data.user].addIceCandidate(
+      new RTCIceCandidate(data.candidate)
+    );
   } catch (error) {
     console.error("Error while trying to add received ICE candidate", error);
   }
