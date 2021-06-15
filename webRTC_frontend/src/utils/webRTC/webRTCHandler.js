@@ -29,6 +29,7 @@ export const getLocalStream = (peerConn, sendOffer) => {
       createPeerConnection(peerConn, sendOffer);
     })
     .catch((error) => {
+      alert("Por favor, tenha uma camera e um microfone para participar");
       console.log(`Error: ${error}. Could not get access to local stream`);
     });
 };

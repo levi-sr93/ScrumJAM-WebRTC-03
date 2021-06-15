@@ -1,6 +1,7 @@
 .dashboard_call_video_container {
   width: 100%;
   display: flex;
+  flex-wrap: wrap;
 }
 
 .remote_videos_section {

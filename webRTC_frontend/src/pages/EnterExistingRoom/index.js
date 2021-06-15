@@ -20,7 +20,7 @@ function EnterExistingRoom() {
       alert("Por favor insira o código da sala");
     } else {
       dispatch(setCallMeetingId(roomIdNumber));
-      registerNewUser({ username, roomIdNumber });
+      registerNewUser(roomIdNumber);
       history.push("/dashboard");
     }
   }

@@ -13,9 +13,11 @@
 .dashboard_content_container {
   height: 100vh;
   width: 100%;
+
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
 }
 
 .dashboard_info_text_description {

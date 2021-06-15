@@ -47,7 +47,7 @@ export const connectWithWebsocket = () => {
 export const registerNewUser = (data) => {
   socket.emit("join-room", {
     // username: data.username,
-    roomId: data.roomId,
+    roomId: data,
     socketId: socket.id,
   });
 

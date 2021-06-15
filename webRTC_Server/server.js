@@ -25,6 +25,7 @@ io.on("connection", (socket) => {
   console.log(socket.id);
 
   socket.on("join-room", (data) => {
+    console.log("joim room", data);
     socket.join(data.roomId);
 
     io.to(data.roomId).emit("new-user-joined", { socketId: data.socketId });
