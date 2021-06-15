@@ -1,6 +1,7 @@
 import * as callActions from "../actions/callActions";
 
 const initialState = {
+  callMeetingId: "",
   localStream: null,
   callState: callActions.callStates.CALL_UNAVAILABLE,
   callingDialogVisible: false,
@@ -9,7 +10,7 @@ const initialState = {
     rejected: false,
     reason: "",
   },
-  remoteStream: null,
+  remoteStream: [],
   localCameraEnabled: true,
   localMicrophoneEnabled: true,
   screenSharingActive: false,
@@ -46,8 +47,9 @@ export default (state = initialState, action) => {
     case callActions.CALL_SET_REMOTE_STREAM:
       return {
         ...state,
-        remoteStream: action.payload,
+        remoteStream: [...state.remoteStream, action.payload],
       };
+
     case callActions.CALL_SET_LOCAL_MICROPHONE_ENABLED:
       return {
         ...state,
@@ -72,6 +74,11 @@ export default (state = initialState, action) => {
         localMicrophoneEnabled: true,
         localCameraEnabled: true,
         callingDialogVisible: false,
+      };
+    case callActions.CALL_SET_MEETING_ID:
+      return {
+        ...state,
+        callMeetingId: action.payload,
       };
     default:
       return state;

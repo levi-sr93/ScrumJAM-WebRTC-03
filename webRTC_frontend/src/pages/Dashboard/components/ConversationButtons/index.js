@@ -9,10 +9,6 @@ import {
   MdVideoCall,
   MdCamera,
 } from "react-icons/md";
-import {
-  switchScreenSharingStream,
-  hangUp,
-} from "../../../../utils/webRTC/webRTCHandler";
 
 import ConversationButton from "./ConversationButton";
 
@@ -40,13 +36,9 @@ function ConversationButtons({
     setCameraEnabled(!cameraEnabled);
   };
 
-  const handleScreenSharingButtonPressed = () => {
-    switchScreenSharingStream();
-  };
+  const handleScreenSharingButtonPressed = () => {};
 
-  const handleHangUpButtonPressed = () => {
-    hangUp();
-  };
+  const handleHangUpButtonPressed = () => {};
   return (
     <div className="conversation-buttons-container">
       <ConversationButton onClickHandler={handleMicrophoneButtonPressed}>

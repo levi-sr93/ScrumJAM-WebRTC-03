@@ -1,3 +1,4 @@
+export const CALL_SET_MEETING_ID = "CALL_SET_MEETING_ID";
 export const CALL_SET_LOCAL_STREAM = "CALL_SET_LOCAL_STREAM";
 export const CALL_SET_CALL_STATE = "CALL_SET_CALL_STATE";
 export const SET_CALL_CALLING_DIALOG_VISIBLE =
@@ -56,7 +57,7 @@ export const setCallRejected = (callRejectedDetails) => {
   };
 };
 
-export const setRemoteStream = (remoteStream) => {
+export const setRemoteStream = (peerConn, remoteStream) => {
   return {
     type: CALL_SET_REMOTE_STREAM,
     payload: remoteStream,
@@ -87,5 +88,12 @@ export const setScreenSharingActive = (active) => {
 export const resetCallDataState = () => {
   return {
     type: CALL_RESET_CALL_DATA,
+  };
+};
+
+export const setCallMeetingId = (meetingId) => {
+  return {
+    type: CALL_SET_MEETING_ID,
+    payload: meetingId,
   };
 };

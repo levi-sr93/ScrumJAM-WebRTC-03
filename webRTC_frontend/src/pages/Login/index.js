@@ -19,8 +19,7 @@ function Login() {
 
   function handleSubmit() {
     dispatch(dashboardActions.setUsername(username));
-    registerNewUser(username);
-    history.push("/dashboard");
+    history.push("/home");
   }
 
   return (
@@ -31,7 +30,7 @@ function Login() {
         </div>
 
         <div className="login_page title_container">
-          <h2>Entrar na sala</h2>
+          <h2>Entrar</h2>
         </div>
 
         <UsernameInput username={username} setUsername={setUsername} />

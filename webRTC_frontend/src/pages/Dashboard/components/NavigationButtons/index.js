@@ -4,23 +4,19 @@ import { useHistory } from "react-router-dom";
 import { FiHome, FiArrowLeftCircle, FiLogOut } from "react-icons/fi";
 
 import "./styles.css";
-import { hangUp } from "../../../../utils/webRTC/webRTCHandler";
 
 function NavigationButtons() {
   const history = useHistory();
 
   function handleGoBack() {
-    hangUp();
     history.goBack();
   }
 
   function handleGoHome() {
-    hangUp();
     history.push("/home");
   }
 
   function handleLogOut() {
-    hangUp();
     history.push("/");
   }
 

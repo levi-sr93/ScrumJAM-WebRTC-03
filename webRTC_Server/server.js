@@ -1,5 +1,6 @@
 const express = require("express");
 const socket = require("socket.io");
+const path = require("path");
 
 const app = express();
 app.use(express.json());
@@ -18,63 +19,33 @@ const io = socket(server, {
   },
 });
 
-let peers = [];
-
-broadcastEventTypes = {
-  ACTIVE_USERS: "ACTIVE_USERS",
-  GROUP_CALL_ROOMS: "GROUP_CALL_ROOMS",
-};
-
 io.on("connection", (socket) => {
   socket.emit("connection", null);
   console.log("new user connected");
-
   console.log(socket.id);
 
-  socket.on("register-new-user", (data) => {
-    peers.push({
-      username: data.username,
-      socketId: data.socketId,
-    });
+  socket.on("join-room", (data) => {
+    socket.join(data.roomId);
 
-    console.log("registered new user");
-    console.log("List of peers", peers);
+    io.to(data.roomId).emit("new-user-joined", { socketId: data.socketId });
 
-    io.sockets.emit("broadcast", {
-      event: broadcastEventTypes.ACTIVE_USERS,
-      activeUsers: peers,
-    });
+    console.log("Room: ", socket.adapter.rooms);
+  });
+
+  socket.on("new-user-start", (data) => {
+    io.to(data.to).emit("new-user-start", { from: data.from });
   });
 
   socket.on("disconnect", () => {
     console.log("User disconnected");
-    peers = peers.filter((peer) => peer.socketId !== socket.id);
-
-    io.sockets.emit("broadcast", {
-      event: broadcastEventTypes.ACTIVE_USERS,
-      activeUsers: peers,
-    });
   });
 
   //events listeners related with direct call
-  socket.on("pre-offer", (data) => {
-    console.log("pre-offer handled");
-    io.to(data.callee.socketId).emit("pre-offer", {
-      callerUsername: data.caller.username,
-      callerSocketId: socket.id,
-    });
-  });
-
-  socket.on("pre-offer-answer", (data) => {
-    console.log("handling pre offer answer");
-    io.to(data.callerSocketId).emit("pre-offer-answer", {
-      answer: data.answer,
-    });
-  });
 
   socket.on("webRTC-offer", (data) => {
     console.log("handling webRTC offer");
     io.to(data.calleeSocketId).emit("webRTC-offer", {
+      user: socket.id,
       offer: data.offer,
     });
   });
@@ -82,6 +53,7 @@ io.on("connection", (socket) => {
   socket.on("webRTC-answer", (data) => {
     console.log("handling webRTC answer");
     io.to(data.callerSocketId).emit("webRTC-answer", {
+      user: socket.id,
       answer: data.answer,
     });
   });
@@ -89,12 +61,8 @@ io.on("connection", (socket) => {
   socket.on("webRTC-candidate", (data) => {
     console.log("Handling ICE candidate", data);
     io.to(data.connectedUserSocketId).emit("webRTC-candidate", {
+      user: socket.id,
       candidate: data.candidate,
     });
-  });
-
-  socket.on("user-hanged-up", (data) => {
-    console.log("Handling user hanged up") /
-      io.to(data.connectedUserSocketId).emit("user-hanged-up");
   });
 });

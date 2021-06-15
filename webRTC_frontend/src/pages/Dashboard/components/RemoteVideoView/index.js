@@ -1,19 +1,5 @@
 import React, { useEffect, useRef } from "react";
 
-const styles = {
-  videoContainer: {
-    width: "100%",
-    height: "50%",
-    margin: "0 auto",
-    border: "1px solid green",
-  },
-
-  videoElement: {
-    width: "100%",
-    height: "100%",
-  },
-};
-
 function RemoteVideoView({ remoteStream }) {
   const remoteVideoRef = useRef();
 
@@ -29,8 +15,8 @@ function RemoteVideoView({ remoteStream }) {
   }, [remoteStream]);
 
   return (
-    <div style={styles.videoContainer}>
-      <video style={styles.videoElement} ref={remoteVideoRef} autoPlay></video>
+    <div className="remote_video_contaner">
+      <video className="remote_video" ref={remoteVideoRef} autoPlay></video>
     </div>
   );
 }

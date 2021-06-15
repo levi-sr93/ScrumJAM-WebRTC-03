@@ -6,6 +6,7 @@ import { connectWithWebsocket } from "./utils/websocket/websocketConnection";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import Home from "./pages/Home";
+import EnterExistingRoom from "./pages/EnterExistingRoom";
 
 function App() {
   useEffect(() => {
@@ -19,6 +20,9 @@ function App() {
         </Route>
         <Route path="/home">
           <Home />
+        </Route>
+        <Route path="/enter-room">
+          <EnterExistingRoom />
         </Route>
         <Route path="/dashboard">
           <Dashboard />

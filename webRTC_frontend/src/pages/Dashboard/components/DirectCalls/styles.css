@@ -1,3 +1,16 @@
-.dialog_window {
-  margin: auto;
+.dashboard_call_video_container {
+  width: 100%;
+  display: flex;
+}
+
+.remote_videos_section {
+  padding: 10px;
+  margin: 10px;
+
+  border-radius: 12px;
+  background-color: #50c8a8;
+}
+
+.remote_videos_section video {
+  width: 350px;
 }

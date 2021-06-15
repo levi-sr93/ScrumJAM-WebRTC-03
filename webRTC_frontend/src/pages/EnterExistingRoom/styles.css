@@ -1,0 +1,56 @@
+.enter_room_container {
+  width: 100vw;
+  height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.enter_room_title {
+  font-weight: bold;
+}
+
+.enter_room_button {
+  padding: 20px;
+  width: 14%;
+  border-radius: 12px;
+  background-color: #0082ff;
+  margin-top: 12px;
+  color: #fff;
+  font-size: 18px;
+  outline: none;
+  border: 0;
+  transition: opacity 0.3s;
+}
+
+.enter_room_button:hover {
+  cursor: pointer;
+  opacity: 0.5;
+}
+
+.input_create_room {
+  padding: 20px;
+  margin-top: 20px;
+  outline: none;
+  border-radius: 12px;
+  font-size: 18px;
+  color: #606074;
+}
+
+.input_create_room::placeholder {
+  color: #ccc;
+  font-size: 18px;
+}
+
+.go_back_button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.go_back_button:hover {
+  cursor: pointer;
+  opacity: 0.5;
+}

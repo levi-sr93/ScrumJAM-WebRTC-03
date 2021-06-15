@@ -1,0 +1,31 @@
+.home_container {
+  height: 100vh;
+  width: 100vw;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.home_button {
+  padding: 10px;
+}
+
+.home_button button {
+  padding: 20px;
+  width: 200px;
+  border-radius: 12px;
+  background-color: #0082ff;
+  margin-top: 12px;
+  color: #fff;
+  font-size: 18px;
+  border: none;
+  outline: none;
+  transition: opacity 0.3s;
+}
+
+.home_button button:hover {
+  opacity: 0.5;
+  cursor: pointer;
+}
